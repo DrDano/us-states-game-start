@@ -15,7 +15,11 @@ score_update = scoreboard.Scoreboard()
 
 game_is_on = True
 while game_is_on:
-    user_guess.check_answer()
+    answer = user_guess.check_answer()
+    if answer == "exit":
+        learner_states = pandas.DataFrame(user_guess.states_to_learn())
+        learner_states.to_csv(path_or_buf="states_to_learn.csv", index=False)
+        break
     correct_guess_list = user_guess.correct_guesses
     correct_guess = correct_guess_list[-1].capitalize()
     state_loc = map_update.state_loc(guessed_state=correct_guess)
