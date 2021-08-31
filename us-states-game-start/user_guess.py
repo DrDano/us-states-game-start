@@ -20,6 +20,8 @@ class UserGuess(Turtle):
         return answer_state
 
     def states_to_learn(self):
-        for state in self.correct_guesses:
-            self.state_list.remove(state.capitalize())
-        return self.state_list
+        # for state in self.correct_guesses:
+        #     self.state_list.remove(state.capitalize())
+        need_to_learn = [n for n in self.state_list if n.lower() not in self.correct_guesses]
+        print(self.correct_guesses)
+        print(need_to_learn)
